@@ -30,7 +30,11 @@ aws_secret_access_key = <AWS_SECRET_ACCESS_KEY>
 ```
 
 * Create a [EC2 key](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html) via the AWS console and name it `minecraft`
-* Update `config/account.tfvars`, `iac/mc-static/config.tf`, and `iac/mc-server/config.tf` with your credentials and your region and an unique name for your S3 bucket for Terraform state
+* Update the following files with your credentials and your region and an unique name for your S3 bucket for Terraform state:
+   * `config/account.tfvars`
+   * `iac/mc-static/config.tf`
+   * `iac/mc-server/config.tf`
+   * `src/mc-destroy.tf` (Look for `TF Variables` and `MC backup bucket`)
    * Suggestion: Find and replace `hlgr360` with `<YOU_INITIALS>`
 * Run `./init_tf_req.sh`in the root of the locally cloned repo
 
