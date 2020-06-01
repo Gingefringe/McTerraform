@@ -8,45 +8,57 @@ Future functionality:
 * add Discord bot for both starting and stopping the Minecraft instance
 
 ## Prerequisites
-* An AWS account with user credentials for programmatic access - see <https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html#id_users_create_console>
+* An AWS account with user credentials for programmatic access
+  * See <https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html#id_users_create_console>
 * Download and install terraform from <https://www.terraform.io/downloads.html>
-* For running the scripted setup of the Terraform resoources, install the AWS CLI at <https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html>
-* For local development (optional): python 3.7, and pip installed
+* For running the scripted setup of the Terraform resources: I
+  * Install the AWS CLI (v1) at <https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html>
+* For local development (optional): 
+  * Install python 3.7, and pip
 
 ## Configuration
-### Local Development
+
+### AWS Deployment
+* Create IAM credentials for programmatic access and add locally [as named AWS credential](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html) to `~/.aws/credentials`
+
+```txt
+~/.aws/credentials
+
+[<YOU_INITIALS>]
+aws_access_key_id = <AWS_ACCESS_KEY_ID>
+aws_secret_access_key = <AWS_SECRET_ACCESS_KEY>
+```
+
+* Create a [EC2 key](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html) via the AWS console and name it `minecraft`
+* Update `config/account.tfvars`, `iac/mc-static/config.tf`, and `iac/mc-server/config.tf` with your credentials and your region and an unique name for your S3 bucket for Terraform state
+   * Suggestion: Find and replace `hlgr360` with `<YOU_INITIALS>`
+* Run `./init_tf_req.sh`in the root of the locally cloned repo
+
+### Optional: Local environment for development
 * Install virtualenv: `sudo pip install virtualenv`
 * Change into source directory `cd src` 
 * Activate venv: `. venv/bin/activate`
 * Install dependencies: `pip install -r requirements.txt`
 
-### AWS
-* Create IAM credentials for programmatic access and add locally [as named AWS credential](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)
-  * Update `config/account.tfvars`, `iac/mc-static/config.tf`, and `iac/mc-server/config.tf` with your credentials and your region and an unique name for your S3 bucket for Terraform state
-
-Manual setup
-* Create [S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html) and [DynamoDB table](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/getting-started-step-1.html) for terraform state via the AWS console
-  * Create the DynamoDB table with `LockID` as key attribute
-* Create [EC2 key](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html) via the AWS console
-
-Scripted Setup
-* Run `./init_tf_req.sh`in the root of the locally cloned repo
-
-### Deployment Options
+### Optional: Deployment Options
 * Copy [latest Minecraft server download URL](https://www.minecraft.net/en-us/download/server/) into `src/mc-server.sh`.
 
 ### Deployment Initialisation
-* Init terraform: `terraform init` in `iac/mc-static`and `iac/mc-server`
+* Init terraform: 
+  * Run `terraform init` in `iac/mc-static`
+  * Run `terraform init` in `iac/mc-server`
 
 ## Deployment
-### Static Resources (once)
+### Static Resources (only once)
+The static resources are allocated only once and normally not needed to be changed again.
+
 * Change to static infrastructure setup: `cd iac/mc-static`
-* Execute: `terraform apply -var-file=../../config/account.tfvars`
+* Execute: `terraform apply -var-file=../../config/account.tfvars` - if prompted type `yes`
 * Creates: S3 bucket for Minecraft World backup, Public IP, SNS topic plus attached Lambda for auto-destroy
 
-### Server Resources
+### Server Resources (when starting the server)
 * Change to server infrastructure setup: `cd iac/mc-server`
-* Execute: `terraform apply -var-file=../../config/account.tfvars`
+* Execute: `terraform apply -var-file=../../config/account.tfvars` - if prompted type `yes`
 * Creates: Minecraft Server with attached Public IP
 
 ## How it all works
@@ -67,5 +79,4 @@ Attached to the SNS Topic is a lambda function, which downloads and installs ter
 
 ### Additional links
 * https://www.codingforentrepreneurs.com/blog/install-django-on-mac-or-linux - installing python on MacOS
-* https://jeremievallee.com/2017/03/26/aws-lambda-terraform.html - deploying AWs Lambda with terraform
-
+* https://jeremievallee.com/2017/03/26/aws-lambda-terraform.html - deploying AWS Lambda with terraform
