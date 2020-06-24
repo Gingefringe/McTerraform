@@ -1,8 +1,8 @@
-# McTerraform - A terraform'ed Minecraft server (with auto-destroy on inactivity) 
+# McTerraform - A terraform'ed Minecraft server (with auto-destroy on inactivity)
 
-Deploy Minecraft server using terraform to AWS. 
+Deploy Minecraft server using terraform to AWS.
 
-Uses lambda functions to auto-destroy a Minecraft server instance after inactivity. S3 is used for Minecraft world backups and for storing terraform state. 
+Uses lambda functions to auto-destroy a Minecraft server instance after inactivity. S3 is used for Minecraft world backups and for storing terraform state.
 
 Future functionality:
 * add Discord bot for both starting and stopping the Minecraft instance
@@ -13,7 +13,7 @@ Future functionality:
 * Download and install terraform from <https://www.terraform.io/downloads.html>
 * For running the scripted setup of the Terraform resources: I
   * Install the AWS CLI (v1) at <https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html>
-* For local development (optional): 
+* For local development (optional):
   * Install python 3.7, and pip
 
 ## Configuration
@@ -40,7 +40,7 @@ aws_secret_access_key = <AWS_SECRET_ACCESS_KEY>
 
 ### Optional: Local environment for development
 * Install virtualenv: `sudo pip install virtualenv`
-* Change into source directory `cd src` 
+* Change into source directory `cd src`
 * Activate venv: `. venv/bin/activate`
 * Install dependencies: `pip install -r requirements.txt`
 
@@ -48,7 +48,7 @@ aws_secret_access_key = <AWS_SECRET_ACCESS_KEY>
 * Copy [latest Minecraft server download URL](https://www.minecraft.net/en-us/download/server/) into `src/mc-server.sh`.
 
 ### Deployment Initialisation
-* Init terraform: 
+* Init terraform:
   * Run `terraform init` in `iac/mc-static`
   * Run `terraform init` in `iac/mc-server`
 

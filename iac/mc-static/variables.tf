@@ -8,7 +8,7 @@ variable "aws-region" {
   type = string
 }
 
-# key-name 
+# key-name
 variable "ec2-key-pair-name" {
   type = string
 }
@@ -23,7 +23,7 @@ variable "ami-images" {
   type = map(string)
 
   default = {
-    "eu-central-1" = "ami-0233214e13e500f77"
+    "eu-west-2" = "ami-0233214e13e500f77"
   }
 }
 
@@ -32,7 +32,6 @@ variable "aws-zones" {
   type = map(string)
 
   default = {
-    "eu-central-1" = "eu-central-1a"
+    "eu-west-2" = "eu-west-2a"
   }
 }
-

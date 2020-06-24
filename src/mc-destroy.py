@@ -26,11 +26,11 @@ TERRAFORM_DIR = os.path.join(EXEC_DIR, 'terraform_%s' % TERRAFORM_VERSION)
 TERRAFORM_PATH = os.path.join(TERRAFORM_DIR, 'terraform')
 
 # TF Variables
-TERRAFORM_STATE_S3_BUCKET = 'hlgr360-tf-state'
+TERRAFORM_STATE_S3_BUCKET = 'gingefringe-tf-state'
 TERRAFORM_STATE_KEY = 'mc-server.tfstate'
 
 # MC backup bucket (holding the TF config and account template)
-MC_BACKUP_S3_BUCKET = 'hlgr360-mc-backup'
+MC_BACKUP_S3_BUCKET = 'minecraft-deploy-mc-backup'
 
 
 def send_discord_message(message):
@@ -110,7 +110,7 @@ def destroy_terraform_plan(s3_bucket, key):
     # invoke TF destroy
     check_call('{0} destroy -force -state=/tmp/terraform.tfstate -var-file=/tmp/account.tfvars'.format(TERRAFORM_PATH))
 
-    # uplaod updated planfile
+    # upload updated planfile
     s3.meta.client.upload_file('/tmp/terraform.tfstate', s3_bucket, key)
 
 
