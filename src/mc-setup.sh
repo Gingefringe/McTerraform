@@ -9,7 +9,7 @@ aws s3 cp config.tf s3://$1
 aws s3 cp variables.tf s3://$1
 aws s3 cp account.tfvars s3://$1
 
-# create minecraft dir and sync with world backup bucket 
+# create minecraft dir and sync with world backup bucket
 mkdir minecraft
 aws s3 sync s3://$1 minecraft/
 
@@ -19,7 +19,7 @@ if [ ! -f "minecraft/eula.txt" ]; then
     cd minecraft
     rm server.jar || true
     # pick latest from https://www.minecraft.net/en-us/download/server/
-    wget https://launcher.mojang.com/v1/objects/bb2b6b1aefcd70dfd1892149ac3a215f6c636b07/server.jar
+    wget https://launcher.mojang.com/v1/objects/a412fd69db1f81db3f511c1463fd304675244077/server.jar
     cat >eula.txt<<EOF
 #By changing the setting below to TRUE you are indicating your agreement to our EULA (https://account.mojang.com/documents/minecraft_eula).
 #Tue Jan 27 21:40:00 UTC 2015
@@ -31,7 +31,7 @@ fi
 # start minecraft
 ./mc-server.sh start
 
-# install minecraft status 
+# install minecraft status
 sudo pip install mcstatus
 
 # insert auto-shutoff into cron tab and run each minute

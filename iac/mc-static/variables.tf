@@ -23,7 +23,7 @@ variable "ami-images" {
   type = map(string)
 
   default = {
-    "eu-west-2" = "ami-0233214e13e500f77"
+    "eu-west-2" = "ami-f976839e"
   }
 }
 

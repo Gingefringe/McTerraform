@@ -1,7 +1,7 @@
-aws-profile = "hlgr360"
+aws-profile = "minecraft-deploy"
 
-aws-region = "eu-central-1"
+aws-region = "eu-west-2"
 
 ec2-key-pair-name = "minecraft"
 
-tf-bucket = "hlgr360-tf-state"
+tf-bucket = "gingefringe-tf-state"

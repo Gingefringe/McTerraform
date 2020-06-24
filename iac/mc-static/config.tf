@@ -3,7 +3,7 @@ terraform {
     profile        = "minecraft-deploy"
     bucket         = "gingefringe-tf-state"
     key            = "mc-static.tfstate"
-    region         = "eu-west-1"
+    region         = "eu-west-2"
     encrypt        = true
   }
 }
