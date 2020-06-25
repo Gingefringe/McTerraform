@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
     profile        = "minecraft-deploy"
-    bucket         = "gingefringe-tf-state"
+    bucket         = "gingefringe-tf-state-new"
     key            = "mc-static.tfstate"
     region         = "eu-west-2"
     encrypt        = true

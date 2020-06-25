@@ -26,7 +26,7 @@ TERRAFORM_DIR = os.path.join(EXEC_DIR, 'terraform_%s' % TERRAFORM_VERSION)
 TERRAFORM_PATH = os.path.join(TERRAFORM_DIR, 'terraform')
 
 # TF Variables
-TERRAFORM_STATE_S3_BUCKET = 'gingefringe-tf-state'
+TERRAFORM_STATE_S3_BUCKET = 'gingefringe-tf-state-new'
 TERRAFORM_STATE_KEY = 'mc-server.tfstate'
 
 # MC backup bucket (holding the TF config and account template)
@@ -34,7 +34,7 @@ MC_BACKUP_S3_BUCKET = 'minecraft-deploy-mc-backup'
 
 
 def send_discord_message(message):
-    url = "" # discord url
+    url = "https://discordapp.com/api/webhooks/725496510820909097/ltGrq_5pqkpQ_3b4Dsd6JNer2UlCEtyY_HsU4yiALDAygUPeOnnFX1LB2SppnfrVJ7cD" # discord url
     data = json.dumps({'content': message})
 
     req = urllib.request.Request(url)
