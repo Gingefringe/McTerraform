@@ -8,7 +8,7 @@ import json
 
 
 # Version of Terraform that we're using
-TERRAFORM_VERSION = '0.12.10'
+TERRAFORM_VERSION = '0.12.20'
 
 # Download URL for Terraform
 TERRAFORM_LINUX_DOWNLOAD_URL = (
