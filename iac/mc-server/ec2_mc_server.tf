@@ -2,7 +2,7 @@
 # Minecraft EC2 server
 # ------------------------------------
 resource "aws_instance" "minecraft" {
-  instance_type = "t2.medium"
+  instance_type = "t3.small"
 
   ami               = var.ami-images[var.aws-region]
   security_groups   = [aws_security_group.minecraft.id]
@@ -28,7 +28,7 @@ resource "aws_eip_association" "minecraft" {
 }
 
 # ------------------------------------
-# IAM Roile for mincraft world backup on S3
+# IAM Role for mincraft world backup on S3
 # ------------------------------------
 resource "aws_iam_instance_profile" "minecraft" {
   name = "mc-backup"
