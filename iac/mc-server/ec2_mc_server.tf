@@ -15,7 +15,7 @@ resource "aws_instance" "minecraft" {
 
   root_block_device {
     volume_type = "standard"
-    volume_size = 40
+    volume_size = 8
   }
 
   tags        = local.common_tags
@@ -28,7 +28,7 @@ resource "aws_eip_association" "minecraft" {
 }
 
 # ------------------------------------
-# IAM Role for mincraft world backup on S3
+# IAM Role for minecraft world backup on S3
 # ------------------------------------
 resource "aws_iam_instance_profile" "minecraft" {
   name = "mc-backup"
